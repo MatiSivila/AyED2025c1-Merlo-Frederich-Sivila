@@ -7,8 +7,8 @@ def graficar_tiempos(datos, tiempos):
     :param datos: Lista de 500 elementos representando los datos.
     :param tiempos: Lista de 500 elementos representando los tiempos de ordenamiento.
     """
-    if len(datos) != 500 or len(tiempos) != 500:
-        raise ValueError("Ambas listas deben contener exactamente 500 elementos.")
+    #if len(datos) != 500 or len(tiempos) != 500:
+        #raise ValueError("Ambas listas deben contener exactamente 500 elementos.")
     
     plt.figure(figsize=(10, 6))
     plt.plot(datos, tiempos, marker='o', linestyle='-', color='b', label='Tiempo de ordenamiento')
