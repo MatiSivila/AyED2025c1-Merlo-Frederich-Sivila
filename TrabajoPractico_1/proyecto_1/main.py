@@ -29,10 +29,9 @@ tiempos_radixsort = medir_tiempos(lista, radixsort)
 tiempos_quicksort = medir_tiempos(lista, quicksort)
 tiempos_burbuja = medir_tiempos(lista, metodo_burbuja)
 
-#graficar_tiempos(tamanios, tiempos_radixsort, "Radixsort")
-#graficar_tiempos(tamanios, tiempos_quicksort, "Quicksort")
+graficar_tiempos(tamanios, tiempos_radixsort, "Radixsort")
+graficar_tiempos(tamanios, tiempos_quicksort, "Quicksort")
 graficar_tiempos(tamanios, tiempos_burbuja, "Burbuja")
 
 #_____________________________________________________________________________________________________
-
 
