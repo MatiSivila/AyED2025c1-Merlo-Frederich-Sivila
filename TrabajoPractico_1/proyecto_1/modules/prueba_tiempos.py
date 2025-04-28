@@ -1,7 +1,5 @@
 import time
 
-
-
 def medir_tiempos(lista,metodo_ord):
     tiempos = []
     for i in range(len(lista)):

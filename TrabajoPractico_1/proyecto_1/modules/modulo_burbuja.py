@@ -1,5 +1,5 @@
-import time 
-import random
+#METODO BURBUJA
+
 def metodo_burbuja(lista):
     for num_pasadas in range(len(lista)-1):
         for j in range(num_pasadas):
