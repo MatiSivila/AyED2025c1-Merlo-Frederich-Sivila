@@ -27,7 +27,6 @@ def quicksort(lista):
             punt_izq += 1
             punt_der -= 1
         
-    
     lista_menores = quicksort(lista[:punt_der])
     lista_mayores = quicksort(lista[punt_der + 1:])
     
