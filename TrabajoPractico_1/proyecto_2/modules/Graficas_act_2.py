@@ -1,6 +1,6 @@
 import time
 import matplotlib.pyplot as plt
-from ListadobleEnlazada import ListaDobleEnlazada
+from LDE import ListaDobleEnlazada
 
 def graficar_comparacion(tamanios, tiempos_dict):
     plt.figure(figsize=(12, 6))

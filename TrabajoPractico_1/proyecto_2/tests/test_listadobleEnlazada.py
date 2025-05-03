@@ -1,5 +1,5 @@
 
-from modules.ListadobleEnlazada import ListaDobleEnlazada
+from modules.LDE import ListaDobleEnlazada
 import unittest
 import random
 
