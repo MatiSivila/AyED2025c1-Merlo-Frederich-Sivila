@@ -4,9 +4,9 @@ import random
 import heapq
 import itertools
 
-# -------------------------------
+
 # Cola de prioridad genérica
-# -------------------------------
+
 class ColaPrioridad:
     def __init__(self):
         self._heap = []
@@ -30,25 +30,25 @@ class ColaPrioridad:
     def __iter__(self):
         return (item[-1] for item in sorted(self._heap))
 
-# -------------------------------
+
 # Clase Paciente
-# -------------------------------
+
 class Paciente:
-    _id = 1  # contador estático para dar IDs únicos
+    _id = 1  
 
     def __init__(self):
         self.id = Paciente._id
         Paciente._id += 1
-        self.criticidad = random.randint(1, 3)  # 1 = crítico, 3 = bajo
+        self.criticidad = random.randint(1, 3) 
 
     def __str__(self):
         niveles = {1: "Crítico", 2: "Moderado", 3: "Bajo"}
         return f"Paciente #{self.id} - Riesgo: {niveles[self.criticidad]}"
 
-# -------------------------------
+
 # Simulación de sala de emergencias
-# -------------------------------
-n = 20  # ciclos de simulación
+
+n = 20 
 cola_de_espera = ColaPrioridad()
 
 for i in range(n):
@@ -57,7 +57,6 @@ for i in range(n):
     print('-*-'*15)
     print('\n', fecha_y_hora, '\n')
 
-    # Crear paciente
     paciente = Paciente()
     cola_de_espera.insertar(paciente.criticidad, paciente)
 
