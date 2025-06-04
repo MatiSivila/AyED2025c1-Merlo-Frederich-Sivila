@@ -53,13 +53,7 @@ class AVL:
         hijoDerecho.altura = 1 + max(self.altura(hijoDerecho.hijoIzquierdo), self.altura(hijoDerecho.hijoDerecho))
 
         return hijoDerecho
-
-    def _factor_balance(self, nodo):
-        if not nodo:
-            return 0
-        return self.altura(nodo.hijoIzquierdo) - self.altura(nodo.hijoDerecho)
     
-
     def __len__(self): #Este metodo funciona para que puedas definir lafuncion len(arbol) y que funcione correctamente
         """Devuelve el valor del tamaño actual del ABB"""
         return self.__tamano 
@@ -76,41 +70,55 @@ class AVL:
 
 
     def eliminar(self,clave):
-        if self.__raiz:
-            self.__raiz = self._eliminar_recursivo(self.__raiz,clave)
-        else:
-            raise KeyError(f"Clave {clave} no se encuentra en el ABB.")
+         nodo_eliminado = self._eliminar_recursivo(clave,self.__raiz)
+         if nodo_eliminado is not None:
+            self.__tamano -=1
             
     def __contains__(self, clave): #METODO PARA QUE PYTHON IDENTIFIQUE EL OPERADOR IN PARA EL ABB AY QUE POR DEFECTO NO LO HACE
         return self._buscar_recursivo(self.__raiz, clave) is not None
 
-    def _eliminar_recursivo(self, nodo, clave):
-        if nodo is None: #ESTA LINEA ES IMPORTANTE PORQUE O INDICA QUE EL NODO A ELIMINAR NO EXISTE EN EL ARBOL O QUE EL ARBOL ESTA VACIO, PARA EN AMBOS CASOS TERMINAR
-            if nodo is None:#SI EL NODO NO EXISTE
-                raise KeyError(f"Clave {clave} no se encuentra en el ABB.") 
-
-        if clave < nodo.clave: #SI LA CLAVE A ELIMINAR ES MENOR QUE LA CLAVE DEL NODO EN EL ARBOL
-            nodo.hijoIzquierdo = self._eliminar_recursivo(nodo.hijoIzquierdo, clave) #APLICA EL METODO RECURSIVAMENTE PARA EL HIJO IZQUIERDO(PARA SEGUIR BAJANDO POR EL ARBOL)
-        elif clave > nodo.clave:#SI LA CLAVE ES MAYOR 
-            nodo.hijoDerecho = self._eliminar_recursivo(nodo.hijoDerecho, clave)#APLICA EL METODO RECURSIVAMENTE PARA EL HIJO DERECHO(PARA SEGUIR BAJANDO POR EL ARBOL)
+    def _eliminar_recursivo(self,clave,nodo):
+        if nodo is None:
+            return nodo      
+        if clave < nodo.clave:
+            nodo.hijoIzquierdo = self._eliminar_recursivo(clave,nodo.hijoIzquierdo)
+        elif clave > nodo.clave:
+            nodo.hijoDerecho = self._eliminar_recursivo(clave,nodo.hijoDerecho)
         else:
-            #SI EL NODO NO TIENE HIJOS(NODO HOJA) SOLO SE ELIMINA EL NODO Y SE RESTA 1 EL TAMAÑO
-            if nodo.hijoIzquierdo is None and nodo.hijoDerecho is None:
-                self.tamano -= 1
-                return None
-            #SI EL NODO TIENE UN SOLO HIJO SE ELIMINA EL NODO Y SE RESTA UNO EL TAMAÑO
-            if nodo.hijoIzquierdo is None:
-                self.tamano -= 1
-                return nodo.hijoDerecho
-            elif nodo.hijoDerecho is None:
-                self.tamano -= 1
-                return nodo.hijoIzquierdo
-            # SI EL NODO POSEE HIJO IZQUIERDO E HIJO DERECHO
-            sucesor = self._minimo(nodo.hijoDerecho) #BUSCA EL NODO CON LA CLAVE MINIMA DEL SUBARBOL DERECHO DEL NODO, PARA REEMPLAZAR
-            nodo.clave = sucesor.clave #LE ASIGNA LA CLAVE DEL SUCESOR 
-            nodo.cargaUtil = sucesor.cargaUtil #LE ASIGNA LA CARGA UTIL
-            nodo.hijoDerecho = self._eliminar_recursivo(nodo.hijoDerecho, sucesor.clave) #LO INCERTA COMO NUEVO NODO PADRE Y REACOMODA EL ARBOL
+            if nodo.tieneAmbosHijos():
+                sucesor = self._minimo(nodo.hijoDerecho) #BUSCA EL NODO CON LA CLAVE MINIMA DEL SUBARBOL DERECHO DEL NODO, PARA REEMPLAZAR
+                nodo.clave =sucesor.clave
+                nodo.cargaUtil = sucesor.cargaUtil
+                #nodo.clave,nodo.cargaUtil = sucesor.clave,sucesor.cargaUtil #LE ASIGNA LA CLAVE DEL SUCESOR Y LE ASIGNA LA CARGA UTIL
+                nodo.hijoDerecho = self._eliminar_recursivo(sucesor.clave,nodo.hijoDerecho) #LO INCERTA COMO NUEVO NODO PADRE Y REACOMODA EL ARBOL  
+            else:
+                nodo = nodo.hijoIzquierdo if nodo.tieneHijoIzquierdo() else nodo.hijoDerecho
+        if nodo is None:
+            return nodo  
+        self.equilibrar_post_eliminacion(nodo)
         return nodo
+
+    def equilibrar_post_eliminacion(self,nodo):
+        if nodo.factor_equilibrio > 1 or nodo.factor_equilibrio < -1:
+            self.__reequilibrar(nodo)
+            return
+        if nodo.padre is not None:
+            if nodo.esHijoIzquierdo():
+                nodo.padre.factor_equilibrio -= 1
+            elif nodo.esHijoDerecho():
+                nodo.padre.factor_equilibrio +=1
+            if nodo.padre.factor_equilibrio !=0:
+                self.equilibrar_post_eliminacion(nodo.padre)
+
+    def __reequilibrar(self,nodo):
+        if nodo.factor_equilibrio < 0:
+            if nodo.hijoDerecho.factor_equilibrio > 0:
+                self._rotar_derecha(nodo.hijoDerecha)
+            self._rotar_izquierda(nodo)
+        elif nodo.factor_equilibrio > 0:
+            if nodo.hijoIzquierdo.factor_equilibrio < 0:
+                self._rotar_izquierda(nodo.hijoIzquierda)
+            self._rotar_derecha(nodo)
 
     def _minimo(self, nodo):
         while nodo.hijoIzquierdo is not None:
@@ -123,7 +131,6 @@ class AVL:
     def _buscar_recursivo(self, nodo, clave):
         if nodo is None:
             return None  #NO EXISTE LA CLAVE EN EL ARBOL
-
         if clave < nodo.clave:
             return self._buscar_recursivo(nodo.hijoIzquierdo, clave)#APLICA RECURSIVAMENTE PARA EL HIJO IZQUIERDO 
         elif clave > nodo.clave:

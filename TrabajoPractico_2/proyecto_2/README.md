@@ -1,8 +1,6 @@
-# 🐍Nombre del proyecto (darle un nombre significativo) 
+# 🐍Aplicaciones de Arbol binario de busqueda AVL
 
-Breve descripción del proyecto:
-
-Ejemplo: “Esta es una aplicación web construida con el framework [Flask](https://flask.palletsprojects.com/). Permite [describir funcionalidades principales].
+Breve descripción del proyecto: Mediante el uso de un Arbol AVL, organizaremos la base de datos de temperaturas.
 
 ---
 ## 🏗Arquitectura General
@@ -14,11 +12,7 @@ El diagrama de relaciones entre clases está disponible en la carpeta [docs](./d
 ---
 ## 📑Dependencias
 
-1. **Python 3.x**
-2. **Flask** (`pip install flask`)
-3. **SQLalchemy** (`pip install sqlalchemy`)
-4. listar dependencias principales
-5. Dependencias listadas en requierements.txt
+ **Python 3.3.3**
 
 ---
 ## 🚀Cómo Ejecutar el Proyecto
@@ -26,30 +20,20 @@ El diagrama de relaciones entre clases está disponible en la carpeta [docs](./d
 
 2. **Crear y activar** un entorno virtual.
 
-3. **Instalar las dependencias**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-   El archivo `requirements.txt` se encuentran en la carpeta [deps](./deps) del proyecto.
 ---
 
 ## 💻Uso de la aplicación
 
 Explica la funcionalidad de tu aplicación:  
-- Cómo se navega por las rutas o URLs.
-- Si requiere autenticación, describe el flujo de login o registro.
-
-**Ejemplo**:
-- **Ruta principal** (`/`): muestra la página de inicio.
-- **Ruta de usuario** (`/user/<id>`): muestra información del usuario.
+- Uso de la estructutra de ABB AVL para el almacenamiento de datos de temperatura
 
 ---
 
 ## 🙎‍♀️🙎‍♂️Autores
 
-- Apellido y Nombre del primer integrante
-- Apellido y Nombre del primer integrante
+- Sivila Matias
+- Frederich Rocio
+- Merlo Fernanda
 
 ---
 
-> **Consejo**: Mantén el README **actualizado** conforme evoluciona el proyecto, y elimina (o añade) secciones según necesites. Esta plantilla es sólo un punto de partida general.
