@@ -1,8 +1,8 @@
 import time
 import datetime
 import random
-from modules.modulo_paciente import Paciente
-from modules.modulo_prioridad import ColaPrioridad
+from modulo_paciente import Paciente
+from modulo_prioridad import ColaPrioridad
 
 
 
