@@ -1,6 +1,6 @@
 import sys
 
-class vertice:
+class Vertice:
     def __init__(self, clave):
         self.id = clave
         self.conectadoA = {}
