@@ -1,27 +1,29 @@
 import os
 
 if __name__ == "__main__":
-    from grafo import Grafo  # Asegurate de tener la clase Grafo en un archivo llamado grafo.py o modificalo según tu estructura
-    from algoritmo_prim import prim    # Asegurate de tener implementado prim en un archivo prim.py o donde corresponda
-
+    from grafo import Grafo  
+    from algoritmo_prim import prim
     G = Grafo()
 
-    # Ruta absoluta al archivo aldeas.txt, basada en la ubicación de este script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     ruta_archivo = os.path.join(script_dir, "aldeas.txt")
 
-    # Carga del grafo
+   
     with open(ruta_archivo, "r", encoding="utf-8") as f:
         for linea in f:
-            origen, destino, distancia = linea.strip().split(", ")
+            partes = linea.strip().split(", ")
+            if len(partes) != 3:
+                continue 
+            origen, destino, distancia = partes
             G.agregarArista(origen, destino, int(distancia))
 
+
     # Ejecutar Prim
-    origen = G.obtenerVertice("Peligros")  # Cambiá "Peligros" si querés otro vértice inicial
+    origen = G.obtenerVertice("Peligros") 
     prim(G, origen)
 
     # Mostrar resultados
-    print("\n--- Resultado del algoritmo de Prim ---\n")
+    print("\n Resultados obtenidos: \n")
     total = 0
     for v in sorted(G, key=lambda x: x.id):
         pred = v.obtenerPredecesor()
