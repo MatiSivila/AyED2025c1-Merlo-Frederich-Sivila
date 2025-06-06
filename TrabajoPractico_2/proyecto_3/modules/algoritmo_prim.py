@@ -1,4 +1,4 @@
-from cola_prioridad import ColaPrioridad
+from modules.cola_prioridad import ColaPrioridad
 
 def prim(G, inicio):
     cp = ColaPrioridad()

@@ -1,12 +1,13 @@
 import os
 
 if __name__ == "__main__":
-    from grafo import Grafo  
-    from algoritmo_prim import prim
+    from modules.grafo import Grafo  
+    from modules.algoritmo_prim import prim
     G = Grafo()
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    ruta_archivo = os.path.join(script_dir, "aldeas.txt")
+    ruta_archivo = os.path.join(script_dir, "data", "aldeas.txt")
+
 
    
     with open(ruta_archivo, "r", encoding="utf-8") as f:

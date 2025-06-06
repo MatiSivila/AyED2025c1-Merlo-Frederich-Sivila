@@ -1,13 +1,11 @@
 # 🐍Aplicaciones de Arbol binario de busqueda AVL
 
-Breve descripción del proyecto: Mediante el uso de un Arbol AVL, organizaremos la base de datos de temperaturas.
+Breve descripción del proyecto: Este proyecto implementa una base de datos en memoria para registrar y consultar temperaturas asociadas a fechas, diseñada especialmente para el trabajo del científico Kevin Kelvin. Utiliza internamente un Árbol AVL para garantizar eficiencia en búsquedas, inserciones y eliminaciones, permitiendo operaciones como guardar mediciones, obtener temperaturas extremas en un rango de fechas y listar registros ordenados cronológicamente
 
 ---
 ## 🏗Arquitectura General
 
-Explica brevemente cómo está organizado el código (funciones y/o clases)
-
-El diagrama de relaciones entre clases está disponible en la carpeta [docs](./docs) del proyecto.
+Toda la estructura interna del Arbol AVL se encuentra en la carpeta modules. NodoArbol esta compuesto por la estructura atributos y metodos propios, estos componen el Arbol AVL. El Arbol_AVL estan los  metodos de obtencion de datos de cada NodoArbol que lo compone. Temperaturas_DB están los metodos especificos para el caso presentado en el proyecto. La base de datos se encuentra en el main y de alli se ejecuta para su uso.
 
 ---
 ## 📑Dependencias
