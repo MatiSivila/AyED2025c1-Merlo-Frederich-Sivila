@@ -1,4 +1,4 @@
-from monticulo_binario import MonticuloBinario
+from modules.monticulo_binario import MonticuloBinario
 
 class ColaPrioridad:
     def __init__(self):

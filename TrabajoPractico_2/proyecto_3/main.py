@@ -1,15 +1,14 @@
 import os
-from grafo import Grafo
+from modules.grafo import Grafo
 
 if __name__ == "__main__":
     G = Grafo()
 
     # Obtener ruta de aldeas.txt
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    proyecto_dir = os.path.dirname(script_dir)
-    ruta_archivo = os.path.join(proyecto_dir, "data", "aldeas.txt")
+    ruta_archivo = os.path.join(script_dir, 'data', 'aldeas.txt')
 
-    with open(ruta_archivo, "r", encoding="utf-8") as f:
+    with open(ruta_archivo, 'r', encoding="utf-8") as f:
         for linea in f:
             partes = linea.strip().split(", ")
             if len(partes) != 3:

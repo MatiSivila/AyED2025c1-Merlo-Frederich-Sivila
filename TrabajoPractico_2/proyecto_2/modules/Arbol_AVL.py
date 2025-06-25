@@ -1,4 +1,4 @@
-from NodoArbol import NodoArbol
+from modules.NodoArbol import NodoArbol
 
 class AVL:
     def __init__(self): #CREO UN ABB VACIO SIN RAIZ Y DE TAMAÑO 0

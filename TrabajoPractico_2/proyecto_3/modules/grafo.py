@@ -1,5 +1,5 @@
-from vertice import Vertice
-from cola_prioridad import ColaPrioridad
+from modules.vertice import Vertice
+from modules.cola_prioridad import ColaPrioridad
 
 class Grafo:
     def __init__(self):
