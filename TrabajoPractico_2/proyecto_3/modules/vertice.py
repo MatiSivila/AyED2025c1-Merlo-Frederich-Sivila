@@ -1,32 +1,18 @@
-import sys
-
 class Vertice:
-    def __init__(self, clave):
-        self.id = clave
-        self.conectadoA = {}
-        self.distancia = sys.maxsize
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.vecinos = []  # Lista de tuplas: (vecino, peso)
         self.predecesor = None
-   
-    def agregarVecino(self, vecino, ponderacion=0):
-        self.conectadoA[vecino] = ponderacion
-    
-    def obtenerConexiones(self):
-        return self.conectadoA.keys()
+        self.distancia = float('inf')
 
-    def obtenerPonderacion(self, vecino):
-        return self.conectadoA[vecino]
-    
-    def asignarDistancia(self, dist):
-        self.distancia = dist
+    def agregar_vecino(self, vecino, peso):
+        self.vecinos.append((vecino, peso))
 
-    def obtenerDistancia(self):
-        return self.distancia
+    def obtener_vecinos(self):
+        return self.vecinos
 
-    def asignarPredecesor(self, pred):
-        self.predecesor = pred
+    def __lt__(self, otro):
+        return self.nombre < otro.nombre  # para comparaciones en montículo
 
-    def obtenerPredecesor(self):
-        return self.predecesor
-    
     def __str__(self):
-        return f"{self.id} conectadoA: {[x.id for x in self.conectadoA]}"
+        return self.nombre

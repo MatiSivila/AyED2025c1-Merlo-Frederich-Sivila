@@ -1,5 +1,5 @@
 from datetime import datetime
-from modules.Arbol_AVL import AVL
+from Arbol_AVL import AVL
 
 class Temperaturas_DB:
     def __init__(self):

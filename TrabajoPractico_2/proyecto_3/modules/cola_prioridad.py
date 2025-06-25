@@ -1,22 +1,19 @@
+from monticulo_binario import MonticuloBinario
+
 class ColaPrioridad:
     def __init__(self):
-        self.cola = []
+        self.__monticulo = MonticuloBinario()
 
-    def construirMonticulo(self, lista):
-        self.cola = sorted(lista, key=lambda x: x[0])
+    def insertar(self, elemento):
+        self.__monticulo.insertar(elemento)
 
-    def estaVacia(self):
-        return len(self.cola) == 0
+    def atender(self):
+        if not self.esta_vacia():
+            return self.__monticulo.eliminar_min()
+        return None
 
-    def eliminarMin(self):
-        return self.cola.pop(0)[1]
+    def esta_vacia(self):
+        return self.__monticulo.esta_vacio()
 
-    def decrementarClave(self, vertice, nuevaDistancia):
-        for i, (dist, v) in enumerate(self.cola):
-            if v == vertice:
-                self.cola[i] = (nuevaDistancia, v)
-                break
-        self.cola.sort(key=lambda x: x[0])
-
-    def __contains__(self, vertice):
-        return any(v == vertice for _, v in self.cola)
+    def tamano(self):
+        return self.__monticulo.tamano
